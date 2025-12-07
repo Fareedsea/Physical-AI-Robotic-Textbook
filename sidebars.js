@@ -1,0 +1,62 @@
+// @ts-check
+
+/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+const sidebars = {
+  tutorialSidebar: [
+    {
+      type: 'category',
+      label: 'Introduction',
+      items: ['intro', 'about'],
+    },
+    {
+      type: 'category',
+      label: 'Chapters',
+      items: [
+        'chapter-1-basics-physical-ai/index',
+        'chapter-1-basics-physical-ai/core-concepts',
+        'chapter-1-basics-physical-ai/practical-example',
+        'chapter-1-basics-physical-ai/summary',
+        'chapter-2-robotics-foundations/index',
+        'chapter-2-robotics-foundations/core-concepts',
+        'chapter-2-robotics-foundations/practical-example',
+        'chapter-2-robotics-foundations/summary',
+        'chapter-3-humanoid-systems/index',
+        'chapter-3-humanoid-systems/core-concepts',
+        'chapter-3-humanoid-systems/practical-example',
+        'chapter-3-humanoid-systems/summary',
+        'chapter-4-sensors-actuators/index',
+        'chapter-4-sensors-actuators/core-concepts',
+        'chapter-4-sensors-actuators/practical-example',
+        'chapter-4-sensors-actuators/summary',
+        'chapter-5-control-systems/index',
+        'chapter-5-control-systems/core-concepts',
+        'chapter-5-control-systems/practical-example',
+        'chapter-5-control-systems/summary',
+        'chapter-6-perception-vision/index',
+        'chapter-6-perception-vision/core-concepts',
+        'chapter-6-perception-vision/practical-example',
+        'chapter-6-perception-vision/summary',
+        'chapter-7-machine-learning-robots/index',
+        'chapter-7-machine-learning-robots/core-concepts',
+        'chapter-7-machine-learning-robots/practical-example',
+        'chapter-7-machine-learning-robots/summary',
+        'chapter-8-human-robot-interaction/index',
+        'chapter-8-human-robot-interaction/core-concepts',
+        'chapter-8-human-robot-interaction/practical-example',
+        'chapter-8-human-robot-interaction/summary',
+        'chapter-9-safety-ethics/index',
+        'chapter-9-safety-ethics/core-concepts',
+        'chapter-9-safety-ethics/practical-example',
+        'chapter-9-safety-ethics/summary',
+        'chapter-10-real-world-applications/index',
+        'chapter-10-real-world-applications/core-concepts',
+        'chapter-10-real-world-applications/practical-example',
+        'chapter-10-real-world-applications/summary',
+      ],
+    },
+    'glossary',
+    'references',
+  ],
+};
+
+export default sidebars;
