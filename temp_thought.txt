@@ -1,0 +1,48 @@
+import React from 'react';
+import Layout from '@theme-original/DocItem/Layout';
+import PersonalizeButton from '@site/src/components/PersonalizeButton';
+
+export default function LayoutWrapper(props): JSX.Element {
+  return (
+    <>
+      <Layout {...props} />
+      {/* We inject the button effectively by wrapping, but DocItem/Layout encapsulates the whole doc page. 
+          Ideally we want it INSIDE the content at the top. 
+          A better place might be DocItem/Content or just putting it above Layout children if valid.
+          However, Docusaurus wrapping often puts it outside the main container if we are not careful.
+          Let's try creating a wrapper that renders the Button, then the original Layout.
+          Wait, DocItem/Layout renders the Toc, Content, etc. 
+          Let's check the Docusaurus Docs for 'DocItem' swizzling.
+          Actually, standard Layout wrapper wraps the whole specific Doc Item page part.
+          
+          We will inject it into the 'DocItem/Content' instead for better placement if possible.
+          But for now, sticking to the plan of 'Chapter Header'.
+          
+          Let's try swizzling DocItem/Content instead of Layout if we want it *in* the content flow.
+          But I already committed to Layout in my thought process. 
+          Let's look at standard 'DocItem/Layout' structure. It usually has {children}.
+          
+          Actually, let's look at `frontend/src/theme/DocItem/Layout/index.tsx` if I write it.
+          Usage: 
+          ```tsx
+          import Layout from '@theme-original/DocItem/Layout';
+          export default function LayoutWrapper(props) {
+            return (
+              <Layout {...props}>
+                 <PersonalizeButton />
+                 {props.children}
+              </Layout>
+            );
+          }
+          ```
+          Depending on where `children` renders in the original layout.
+          If `DocItem/Layout` accepts children as the content.
+      */}
+    </>
+  );
+}
+// Rethinking: Wrapping 'DocItem/Layout' might not inject it *where* I want (top of content).
+// 'DocItem/Paginator' is at bottom.
+// 'DocItem/Metadata' is invisible.
+// 'DocItem/Content' is the markdown content.
+// Swizzling 'DocItem/Content' is better.
