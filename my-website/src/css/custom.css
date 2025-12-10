@@ -15,6 +15,13 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Custom variables for textbook */
+  --textbook-primary: #1a73e8;
+  --textbook-secondary: #fbbc04;
+  --textbook-accent: #34a853;
+  --textbook-dark: #202124;
+  --textbook-light: #ffffff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -27,4 +34,151 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Dark mode custom variables */
+  --textbook-primary: #8ab4f8;
+  --textbook-secondary: #fdd662;
+  --textbook-accent: #67c286;
+  --textbook-dark: #ffffff;
+  --textbook-light: #202124;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  /* Adjust main content for mobile */
+  .main-wrapper {
+    padding: 0.5rem;
+  }
+
+  /* Make headings more readable on small screens */
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  /* Adjust code blocks for mobile */
+  .code-block {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  /* Improve table display on mobile */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 100%;
+    font-size: 0.8rem;
+  }
+
+  /* Adjust sidebar for mobile */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  /* Improve navigation on mobile */
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar__items {
+    flex-wrap: wrap;
+  }
+
+  /* Adjust buttons for touch targets */
+  .button {
+    min-height: 40px;
+    min-width: 40px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .main-wrapper {
+    padding: 0.25rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Make links easier to tap */
+  a {
+    padding: 4px 0;
+  }
+}
+
+/* Custom styles for textbook content */
+.textbook-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.textbook-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.learning-objectives {
+  background-color: var(--ifm-color-primary-lightest);
+  border-left: 4px solid var(--ifm-color-primary);
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.learning-outcomes {
+  background-color: var(--textbook-accent);
+  color: white;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.practical-exercise {
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Improve accessibility */
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus indicators for keyboard navigation */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--textbook-primary);
+  outline-offset: 2px;
 }

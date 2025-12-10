@@ -31,14 +31,7 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- [ ] Content is beginner-friendly and accessible to those with no prior robotics/AI knowledge
-- [ ] All technical claims are verifiable through authoritative sources
-- [ ] Content connects directly to real-world robotics applications
-- [ ] Each chapter follows standardized structure: Introduction → Core Concepts → Practical Example → Summary
-- [ ] Content leverages AI-native learning design principles
-- [ ] All content is original with 0% plagiarism tolerance
-- [ ] Content is in Markdown format for Docusaurus compatibility
-- [ ] No AI hallucinations allowed in technical content
+[Gates determined based on constitution file]
 
 ## Project Structure
 

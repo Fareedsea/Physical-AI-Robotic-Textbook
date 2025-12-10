@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Physical AI & Humanoid Robotics Textbook',
+  tagline: 'Comprehensive guide to Physical AI & Embodied Intelligence',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,15 +15,17 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://fareed-ai.github.io', // Replace with actual GitHub Pages URL
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/Physical-AI-Robotic-Textbook/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'fareed-ai', // Usually your GitHub org/user name.
+  projectName: 'Physical-AI-Robotic-Textbook', // Usually your repo name.
+  deploymentBranch: 'gh-pages', // The branch to deploy to GitHub Pages
+  trailingSlash: false, // Set to false to remove trailing slashes
 
   onBrokenLinks: 'throw',
 
@@ -32,19 +34,19 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur'], // Adding Urdu for future translation
   },
 
   presets: [
     [
       'classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/fareed-ai/Physical-AI-Robotic-Textbook',
         },
         blog: {
           showReadingTime: true,
@@ -52,11 +54,8 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+            'https://github.com/fareed-ai/Physical-AI-Robotic-Textbook',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -64,8 +63,21 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+          trackingID: 'G-XXXXXXXXXX',
+          anonymizeIP: true,
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.7,
+          filename: 'sitemap.xml',
+        },
       } satisfies Preset.Options,
     ],
+  ],
+
+  themes: [
+    // Add search functionality is handled in themeConfig
   ],
 
   themeConfig: {
@@ -74,10 +86,19 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'YOUR_APP_ID',
+      // Public API key (it is safe to commit this)
+      apiKey: 'YOUR_SEARCH_API_KEY',
+      indexName: 'physical-ai-textbook', // Replace with your index name
+      contextualSearch: true,
+      searchPagePath: 'search',
+    },
     navbar: {
-      title: 'My Site',
+      title: 'Physical AI Textbook',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Physical AI & Humanoid Robotics Textbook Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,11 +106,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Textbook',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/fareed-ai/Physical-AI-Robotic-Textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -104,6 +125,14 @@ const config: Config = {
             {
               label: 'Tutorial',
               to: '/docs/intro',
+            },
+            {
+              label: 'Tutorial Basics',
+              to: '/docs/tutorial-basics/create-a-document',
+            },
+            {
+              label: 'Markdown Features',
+              to: '/docs/tutorial-basics/markdown-features',
             },
           ],
         },
@@ -133,12 +162,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/fareed-ai/Physical-AI-Robotic-Textbook',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

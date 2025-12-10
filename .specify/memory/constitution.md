@@ -1,13 +1,10 @@
-<!-- SYNC IMPACT REPORT
-Version change: 0.1.0 → 1.0.0
-Modified principles: None (new project constitution)
-Added sections: All principles and constraints for Physical AI & Humanoid Robotics Textbook
+<!--
+Sync Impact Report:
+Version change: 1.0.0 → 1.0.0 (initial constitution for project)
+Modified principles: None (new constitution)
+Added sections: All sections (initial constitution)
 Removed sections: None
-Templates requiring updates:
-  - .specify/templates/plan-template.md ⚠ pending
-  - .specify/templates/spec-template.md ⚠ pending
-  - .specify/templates/tasks-template.md ⚠ pending
-Templates requiring updates (✅ updated / ⚠ pending) with file paths:
+Templates requiring updates: N/A (first version)
 Follow-up TODOs: None
 -->
 
@@ -15,31 +12,31 @@ Follow-up TODOs: None
 
 ## Core Principles
 
-### I. Clear and Beginner-Friendly Explanations
-All content must be accessible to beginners with no prior robotics or AI knowledge; explanations should use simple language, analogies, and step-by-step guidance; complex concepts must be broken down into digestible parts with clear learning progressions.
+### I. Technical Accuracy
+All technical concepts must match real-world robotics systems including ROS 2, Gazebo, NVIDIA Isaac, and Vision-Language-Action (VLA) frameworks. This ensures students learn industry-standard tools and practices that directly apply to current robotics development workflows.
 
-### II. Accurate and Verified Technical Content
-All technical claims must be verifiable through authoritative sources or practical implementation; content must be fact-checked and validated before publication; any theoretical concepts must be supported by real-world applications or proven research.
+### II. Pedagogical Clarity
+Content must prioritize beginner-to-intermediate clarity for students. Complex robotics concepts should be broken down into digestible explanations with clear examples that build understanding progressively from fundamentals to advanced applications.
 
-### III. Practical, Real-World Robotics Relevance
-Content must connect directly to real-world robotics applications; examples and exercises should reflect actual robotics challenges and solutions; focus on skills and knowledge that have practical utility in robotics development.
+### III. Practical Learning
+Every module must include hands-on workflows and simulations that allow students to apply concepts immediately. Learning outcomes must be measurable through practical tasks rather than theoretical understanding alone.
 
-### IV. Consistent Structure Across All Chapters
-Each chapter must follow the standardized structure: Introduction → Core Concepts → Practical Example → Summary; consistent formatting, terminology, and pedagogical approach across all chapters; maintain uniform learning experience throughout the textbook.
+### IV. AI-Native Integration
+The curriculum must embrace AI-native thinking by integrating Large Language Models, Robotics, and Simulation in a unified learning approach. This reflects the current state of robotics development where AI plays a central role.
 
-### V. AI-Native Learning Design
-Content must leverage AI tools and methodologies for enhanced learning; incorporate interactive elements and AI-assisted learning features; design for AI-powered study aids and automated feedback systems.
+### V. Simple Language with Clear Examples
+All content must use simple language with concrete examples that illustrate abstract concepts. Each module must include learning goals and applied outcomes to ensure measurable progress.
 
-## Content Standards
-All technical claims must be verifiable; writing style must be simple, professional, and structured; no AI hallucinations allowed; each chapter must include: Introduction, Core Concepts, Practical Example, Summary; all content must be original with 0% plagiarism tolerance.
+### VI. Docusaurus Markdown Standard
+All content must be written in Docusaurus Markdown format to ensure proper deployment on GitHub Pages. This maintains consistency across the textbook and enables proper documentation site generation.
 
-## Technical Constraints
-Format: Markdown (.md); Platform: Docusaurus; Deployment: GitHub Pages; Toolchain: Spec-Kit Plus + Claude Code; Target Audience: Beginners to intermediate learners; No copyrighted content allowed; Strict adherence to ethical AI practices.
+## Deployment Standards
+Content must be structured for GitHub Pages deployment with integration of RAG chatbot capabilities. All technical concepts must align with ROS 2, Gazebo, NVIDIA Isaac, and VLA usage to ensure technical accuracy.
 
-## Success Criteria
-Book builds successfully in Docusaurus; GitHub Pages deployment works correctly; Content is accurate, clear, and reproducible; The book serves as a complete self-learning resource; All chapters meet the defined structure and quality standards.
+## Development Workflow
+Content development follows the Spec-Kit Plus workflow: Constitution → Specify → Plan → Tasks → Implement. Each module must include key concepts, practical tasks, and measurable learning outcomes. All content must be written in English with potential for Urdu translation in the future.
 
 ## Governance
-This constitution governs all content creation and technical decisions for the Physical AI & Humanoid Robotics Textbook project; All contributions must comply with these principles; Amendments require documentation and approval through the project's standard review process; All PRs and reviews must verify compliance with these principles.
+This constitution governs all development of the Physical AI & Humanoid Robotics Textbook. All content and implementation must comply with these principles. Amendments require documentation of changes and approval from project maintainers. The constitution supersedes any conflicting practices or guidelines.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
+**Version**: 1.0.0 | **Ratified**: 2025-12-10 | **Last Amended**: 2025-12-10

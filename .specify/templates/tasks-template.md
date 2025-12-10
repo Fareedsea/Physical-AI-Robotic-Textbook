@@ -151,13 +151,11 @@ Examples of foundational tasks (adjust based on your project):
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Content verification to ensure all technical claims are verifiable
-- [ ] TXXX Review for beginner-friendly explanations and accessibility
-- [ ] TXXX [P] Verify all content follows Introduction → Core Concepts → Practical Example → Summary structure
-- [ ] TXXX Check for AI hallucinations and ensure content accuracy
-- [ ] TXXX Verify content is in Markdown format for Docusaurus compatibility
+- [ ] TXXX Code cleanup and refactoring
+- [ ] TXXX Performance optimization across all stories
+- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
+- [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
-- [ ] TXXX Final plagiarism check to ensure 0% tolerance compliance
 
 ---
 

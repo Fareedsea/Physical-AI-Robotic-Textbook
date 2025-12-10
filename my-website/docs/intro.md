@@ -2,46 +2,58 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction to Physical AI & Humanoid Robotics
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the comprehensive textbook on Physical AI & Humanoid Robotics. This textbook is designed to guide you through the fascinating world of embodied intelligence, where artificial intelligence meets physical systems.
 
-## Getting Started
+## About This Textbook
 
-Get started by **creating a new site**.
+This textbook covers the essential concepts of Physical AI and humanoid robotics, providing both theoretical foundations and practical applications. You'll learn about:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- The fundamentals of Physical AI and embodied intelligence
+- Robotics foundations and core principles
+- Humanoid system design and control
+- Sensor and actuator technologies
+- Control systems for robotic applications
+- Perception and computer vision in robotics
+- Machine learning techniques for robots
+- Human-robot interaction principles
+- Safety and ethical considerations
+- Real-world applications and case studies
 
-### What you'll need
+## Learning Objectives
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+By the end of this textbook, you will be able to:
+- Understand the core principles of Physical AI and embodied intelligence
+- Apply robotics concepts to real-world problems
+- Design and implement basic humanoid robot systems
+- Integrate sensors, actuators, and control systems
+- Implement perception and learning algorithms for robots
+- Evaluate human-robot interaction scenarios
+- Consider safety and ethical implications in robotic systems
 
-## Generate a new site
+## Target Audience
 
-Generate a new Docusaurus site using the **classic template**.
+This textbook is designed for:
+- University students studying robotics, AI, or related fields
+- AI learners interested in embodied intelligence
+- Robotics beginners looking to understand humanoid systems
+- Professionals seeking to understand Physical AI concepts
 
-The classic template will automatically be added to your project after you run the command:
+## How to Use This Textbook
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Each chapter builds upon previous concepts, so we recommend following the textbook in order. Each chapter includes:
+- Clear explanations of concepts
+- Practical examples and exercises
+- Learning objectives and outcomes
+- References to relevant frameworks like ROS 2, Gazebo, NVIDIA Isaac, and Vision-Language-Action (VLA) systems
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Prerequisites
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+To get the most out of this textbook, you should have:
+- Basic programming knowledge (Python recommended)
+- Understanding of linear algebra and calculus
+- Familiarity with basic physics concepts
+- Interest in robotics and AI
 
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Let's begin our journey into the exciting field of Physical AI and humanoid robotics!

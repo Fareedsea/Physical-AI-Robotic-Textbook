@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: Textbook RAG Chatbot API
+  description: API for the Physical AI & Humanoid Robotics Textbook RAG chatbot
+  version: 1.0.0
+servers:
+  - url: https://api.textbook.example.com
+    description: Production server
+  - url: https://staging-api.textbook.example.com
+    description: Staging server
+
+paths:
+  /chat/query:
+    post:
+      summary: Submit a question to the RAG chatbot
+      description: Submit a question about the textbook content and receive an AI-generated response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - question
+              properties:
+                question:
+                  type: string
+                  description: The question to ask the chatbot
+                  example: "What is the difference between ROS 1 and ROS 2?"
+                sessionId:
+                  type: string
+                  description: Session identifier to maintain conversation context
+                  example: "sess_12345"
+                chapterId:
+                  type: string
+                  description: Optional chapter context for the question
+                  example: "chapter-1-basics-physical-ai"
+      responses:
+        '200':
+          description: Successful response with answer and sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "resp_67890"
+                  answer:
+                    type: string
+                    description: The chatbot's answer to the question
+                    example: "ROS 2 addresses several limitations of ROS 1, including better security, improved multi-robot support, and enhanced cross-platform compatibility..."
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chapterId:
+                          type: string
+                          example: "chapter-2-robotics-foundations"
+                        title:
+                          type: string
+                          example: "Robotics Foundations"
+                        page:
+                          type: string
+                          example: "page-5"
+                        relevance:
+                          type: number
+                          format: float
+                          example: 0.87
+                  confidence:
+                    type: number
+                    format: float
+                    description: Confidence score of the response
+                    example: 0.92
+                  sessionId:
+                    type: string
+                    example: "sess_12345"
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Question is required and must be between 5-500 characters"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error occurred while processing the query"
+
+  /chat/history:
+    get:
+      summary: Retrieve chat history for a session
+      parameters:
+        - name: sessionId
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "sess_12345"
+      responses:
+        '200':
+          description: List of chat history for the session
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+                    example: "sess_12345"
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "msg_111"
+                        type:
+                          type: string
+                          enum: [question, answer]
+                          example: "question"
+                        content:
+                          type: string
+                          example: "What is ROS 2?"
+                        timestamp:
+                          type: string
+                          format: date-time
+                          example: "2025-12-10T10:30:00Z"
+                        sources:
+                          type: array
+                          items:
+                            type: string
+                            example: "chapter-2-robotics-foundations"
+        '400':
+          description: Bad request - invalid session ID
+        '500':
+          description: Internal server error
+
+  /chat/feedback:
+    post:
+      summary: Submit feedback on a chatbot response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - responseId
+                - rating
+              properties:
+                responseId:
+                  type: string
+                  example: "resp_67890"
+                rating:
+                  type: string
+                  enum: [positive, negative]
+                  example: "positive"
+                comment:
+                  type: string
+                  description: Optional comment about the response
+                  example: "The answer was very helpful and accurate"
+      responses:
+        '200':
+          description: Feedback submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+
+  /content/search:
+    get:
+      summary: Search textbook content
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "control systems"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            example: 5
+        - name: chapterId
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "chapter-5-control-systems"
+      responses:
+        '200':
+          description: Search results from textbook content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                    example: "control systems"
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "content_abc123"
+                        title:
+                          type: string
+                          example: "Introduction to Control Systems"
+                        chapterId:
+                          type: string
+                          example: "chapter-5-control-systems"
+                        content:
+                          type: string
+                          example: "Control systems in robotics are used to regulate the behavior of robotic systems..."
+                        relevance:
+                          type: number
+                          format: float
+                          example: 0.95
+        '400':
+          description: Bad request - invalid query
+        '500':
+          description: Internal server error

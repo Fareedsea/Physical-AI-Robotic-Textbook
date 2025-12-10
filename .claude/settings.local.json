@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(PYTHONPATH=.. python -c \"import sys; sys.path.insert(0, ''..''); import main; print(''Successfully imported main module'')\")",
+      "Bash(python -m pytest backend/tests/ -v)",
+      "Bash(PYTHONPATH=. python -m pytest backend/tests/ -v)",
+      "Bash(PYTHONPATH=.. python -m pytest tests/ -v)",
+      "Bash(python -m pytest tests/contract/ -v)",
+      "Bash(node --version)",
+      "Bash(node tests/integration/deployment.test.js)",
+      "Bash(npx jest --version)",
+      "Bash(npx jest tests/integration/)",
+      "Bash(npx jest ../tests/integration/)",
+      "Bash(npm install --save-dev jest-environment-jsdom)",
+      "Bash(npm install --save-dev ts-jest)",
+      "Bash(npm run build)",
+      "Bash(npx jest --testPathPattern=\"../tests/integration/\" --passWithNoTests)",
+      "Bash(npx jest --testPathPatterns=\"../tests/integration/\" --passWithNoTests)",
+      "Bash(node -e \"\nconst { execSync } = require(''child_process'');\ntry {\n  execSync(''cd my-website && npm run build'', { stdio: ''pipe'' });\n  console.log(''✓ Docusaurus build completed successfully'');\n} catch (error) {\n  console.log(''✗ Docusaurus build failed:'', error.message);\n}\n\")",
+      "Bash(npm run build --if-present)"
+    ]
+  }
+}
