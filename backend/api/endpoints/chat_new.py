@@ -78,8 +78,7 @@ async def startup_event():
         chatbot = create_openai_chatbot(qdrant_store=qdrant_store)
         logger.info("OpenAI Chatbot initialized successfully")
     except Exception as e:
-        logger.warning(f"Chatbot initialization failed (Qdrant may not be available): {str(e)}")
-        # Don't set chatbot to None, allow lazy initialization later
+        logger.error(f"Failed to initialize chatbot: {str(e)}")
         chatbot = None
 
 
@@ -90,17 +89,8 @@ async def query_chatbot(request: ChatQueryRequest, db: Session = Depends(get_db)
     """
     global chatbot
 
-    # Initialize chatbot if not already initialized
     if not chatbot:
-        try:
-            from rag.qdrant_store import QdrantTextbookStore
-            from rag.openai_chatbot import create_openai_chatbot
-            qdrant_store = QdrantTextbookStore()
-            chatbot = create_openai_chatbot(qdrant_store=qdrant_store)
-            logger.info("Chatbot initialized on demand")
-        except Exception as e:
-            logger.error(f"Failed to initialize chatbot: {str(e)}")
-            raise HTTPException(status_code=503, detail="Chatbot service not available")
+        raise HTTPException(status_code=503, detail="Chatbot service not available")
 
     try:
         # Get response from chatbot
@@ -126,17 +116,8 @@ async def get_chat_history(user_id: str, session_id: Optional[str] = None, limit
     """
     global chatbot
 
-    # Initialize chatbot if not already initialized
     if not chatbot:
-        try:
-            from rag.qdrant_store import QdrantTextbookStore
-            from rag.openai_chatbot import create_openai_chatbot
-            qdrant_store = QdrantTextbookStore()
-            chatbot = create_openai_chatbot(qdrant_store=qdrant_store)
-            logger.info("Chatbot initialized on demand")
-        except Exception as e:
-            logger.error(f"Failed to initialize chatbot: {str(e)}")
-            raise HTTPException(status_code=503, detail="Chatbot service not available")
+        raise HTTPException(status_code=503, detail="Chatbot service not available")
 
     try:
         # Get history from chatbot
@@ -164,17 +145,8 @@ async def submit_feedback(request: ChatFeedbackRequest, db: Session = Depends(ge
     """
     global chatbot
 
-    # Initialize chatbot if not already initialized
     if not chatbot:
-        try:
-            from rag.qdrant_store import QdrantTextbookStore
-            from rag.openai_chatbot import create_openai_chatbot
-            qdrant_store = QdrantTextbookStore()
-            chatbot = create_openai_chatbot(qdrant_store=qdrant_store)
-            logger.info("Chatbot initialized on demand")
-        except Exception as e:
-            logger.error(f"Failed to initialize chatbot: {str(e)}")
-            raise HTTPException(status_code=503, detail="Chatbot service not available")
+        raise HTTPException(status_code=503, detail="Chatbot service not available")
 
     try:
         # Submit feedback to chatbot

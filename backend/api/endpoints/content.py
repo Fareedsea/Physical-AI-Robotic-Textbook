@@ -1,5 +1,6 @@
 """
-Content search API endpoints for the Physical AI & Humanoid Robotics Textbook
+Updated Content search API endpoints for the Physical AI & Humanoid Robotics Textbook
+Uses Qdrant for vector storage
 """
 
 from fastapi import APIRouter, Query
@@ -7,17 +8,15 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 import logging
 from datetime import datetime
+import time
 
-from rag.vector_store import TextbookVectorStore
-from rag.document_loader import load_textbook_documents
-from rag.search import TextbookSearcher
+from rag.qdrant_store import QdrantTextbookStore
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-# Global vector store and searcher instances
-vector_store: Optional[TextbookVectorStore] = None
-searcher: Optional[TextbookSearcher] = None
+# Global Qdrant store instance
+qdrant_store: Optional[QdrantTextbookStore] = None
 
 
 class ContentSearchRequest(BaseModel):
@@ -46,33 +45,27 @@ class ContentSearchResponse(BaseModel):
 
 @router.on_event("startup")
 async def startup_event():
-    """Initialize the vector store and searcher on startup"""
-    global vector_store, searcher
+    """Initialize the Qdrant store on startup"""
+    global qdrant_store
     try:
-        # Initialize and load the vector store
-        vector_store = TextbookVectorStore()
-        vector_store.load()  # Load from default location
-
-        # Initialize the searcher
-        searcher = TextbookSearcher(vector_store=vector_store)
-
-        logger.info("Vector store and searcher initialized successfully")
+        # Initialize the Qdrant store
+        qdrant_store = QdrantTextbookStore()
+        logger.info("Qdrant store initialized successfully")
     except Exception as e:
-        logger.error(f"Failed to initialize vector store or searcher: {str(e)}")
-        vector_store = None
-        searcher = None
+        logger.error(f"Failed to initialize Qdrant store: {str(e)}")
+        qdrant_store = None
 
 
 @router.post("/search", response_model=ContentSearchResponse)
 async def search_content(request: ContentSearchRequest):
     """
-    Search textbook content based on the query using vector similarity
+    Search textbook content based on the query using vector similarity in Qdrant
     """
-    global vector_store, searcher
+    global qdrant_store
 
-    if not searcher:
-        # Fallback to mock results if searcher not available
-        logger.warning("Searcher not available, returning mock results")
+    if not qdrant_store:
+        # Fallback to mock results if Qdrant store not available
+        logger.warning("Qdrant store not available, returning mock results")
         return ContentSearchResponse(
             results=[
                 ContentSearchResult(
@@ -91,15 +84,13 @@ async def search_content(request: ContentSearchRequest):
         )
 
     try:
-        import time
         start_time = time.time()
 
-        # Perform similarity search using the searcher
-        results = searcher.search(
+        # Perform similarity search using Qdrant
+        results = qdrant_store.search(
             query=request.query,
             k=request.max_results,
-            min_relevance=request.min_relevance,
-            filters=request.filters
+            min_relevance=request.min_relevance
         )
 
         # Format results
@@ -147,28 +138,3 @@ async def search_content_get(
         min_relevance=min_relevance
     )
     return await search_content(request)
-
-
-# Initialize vector store and searcher on module import
-def init_vector_store():
-    """Initialize vector store and searcher for use in the API"""
-    global vector_store, searcher
-    if not vector_store:
-        try:
-            vector_store = TextbookVectorStore()
-            try:
-                vector_store.load()
-                logger.info("Loaded existing vector store")
-            except:
-                logger.info("No existing vector store found, initializing empty one")
-                # In a real scenario, you might want to build the vector store here
-
-            # Initialize the searcher
-            searcher = TextbookSearcher(vector_store=vector_store)
-        except Exception as e:
-            logger.error(f"Error initializing vector store or searcher: {str(e)}")
-            vector_store = None
-            searcher = None
-
-# Initialize when module is imported
-init_vector_store()

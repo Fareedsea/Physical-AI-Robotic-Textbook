@@ -57,14 +57,16 @@ class TextbookApiClient {
    * @param {string} userId - User identifier
    * @param {string} sessionId - Session identifier
    * @param {Array} history - Conversation history
+   * @param {string} selectedText - User-selected text for grounding
    * @returns {Promise<Object>} Chat response
    */
-  async queryChatbot(query, userId = null, sessionId = null, history = null) {
+  async queryChatbot(query, userId = null, sessionId = null, history = null, selectedText = null) {
     const requestBody = {
       query,
       user_id: userId,
       session_id: sessionId,
       history: history || [],
+      selected_text: selectedText,
     };
 
     return this.request('/chat/query', 'POST', requestBody);

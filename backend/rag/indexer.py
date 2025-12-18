@@ -1,212 +1,200 @@
 """
-Content indexing script for the Physical AI & Humanoid Robotics Textbook RAG system
-Indexes Docusaurus markdown documents into the vector store
+Document indexing module for the Physical AI & Humanoid Robotics Textbook RAG system
+Handles indexing of textbook documents into Qdrant vector store
 """
 
 import logging
-import os
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from pathlib import Path
+import time
 
-from .document_loader import TextbookDocumentLoader, load_textbook_documents
-from .vector_store import TextbookVectorStore, create_textbook_vector_store
-from .config import rag_config
-
+from rag.document_loader import load_textbook_documents
+from rag.qdrant_store import QdrantTextbookStore
+from rag.new_config import rag_config
 
 logger = logging.getLogger(__name__)
 
 
 class TextbookIndexer:
-    """Indexes textbook content from Docusaurus docs into the vector store"""
+    """Handles indexing of textbook documents into vector store"""
 
-    def __init__(self,
-                 docs_path: str = None,
-                 index_path: str = None,
-                 metadata_path: str = None):
-        self.docs_path = docs_path or rag_config.docs_path
-        self.index_path = index_path or rag_config.index_path
-        self.metadata_path = metadata_path or rag_config.metadata_path
+    def __init__(self, qdrant_store: QdrantTextbookStore = None, docs_path: str = None):
+        self.qdrant_store = qdrant_store or QdrantTextbookStore()
+        self.docs_path = Path(docs_path or rag_config.textbook_docs_path)
 
-    def index_content(self) -> bool:
+    def index_documents(self, docs_path: Optional[str] = None) -> Dict[str, Any]:
         """
-        Index all textbook content from Docusaurus docs into the vector store
+        Index textbook documents into Qdrant
+
+        Args:
+            docs_path: Path to textbook documents (optional, defaults to instance path)
 
         Returns:
-            bool: True if indexing was successful, False otherwise
+            Dictionary with indexing results
         """
-        try:
-            logger.info(f"Starting content indexing from {self.docs_path}")
+        start_time = time.time()
+        docs_path = Path(docs_path or self.docs_path)
 
-            # Load documents from Docusaurus docs
-            loader = TextbookDocumentLoader(docs_path=self.docs_path)
-            documents = loader.load_documents()
+        logger.info(f"Starting document indexing from: {docs_path}")
+
+        try:
+            # Load documents
+            documents = load_textbook_documents(docs_path=str(docs_path))
+            logger.info(f"Loaded {len(documents)} documents")
 
             if not documents:
                 logger.warning("No documents found to index")
-                return False
+                return {
+                    "indexed_count": 0,
+                    "total_documents": 0,
+                    "processing_time": time.time() - start_time,
+                    "success": True,
+                    "message": "No documents found to index"
+                }
 
-            logger.info(f"Loaded {len(documents)} documents for indexing")
+            # Add documents to Qdrant
+            logger.info("Adding documents to Qdrant...")
+            self.qdrant_store.add_documents(documents)
 
-            # Create and populate vector store
-            vector_store = create_textbook_vector_store(
-                documents=documents,
-                index_file=self.index_path,
-                metadata_file=self.metadata_path
+            # Get final count
+            final_count = self.qdrant_store.get_document_count()
+
+            processing_time = time.time() - start_time
+
+            logger.info(f"Successfully indexed {len(documents)} documents in {processing_time:.2f}s")
+            logger.info(f"Total documents in store: {final_count}")
+
+            return {
+                "indexed_count": len(documents),
+                "total_documents": final_count,
+                "processing_time": processing_time,
+                "success": True,
+                "message": f"Successfully indexed {len(documents)} documents"
+            }
+
+        except Exception as e:
+            logger.error(f"Error during document indexing: {str(e)}")
+            return {
+                "indexed_count": 0,
+                "total_documents": 0,
+                "processing_time": time.time() - start_time,
+                "success": False,
+                "message": f"Error during indexing: {str(e)}"
+            }
+
+    def update_document(self, doc_id: str, content: str, metadata: Dict[str, Any]) -> bool:
+        """Update a single document in the vector store"""
+        try:
+            # Delete the existing document
+            self.qdrant_store.client.delete(
+                collection_name=self.qdrant_store.collection_name,
+                points_selector=[doc_id]
             )
 
-            logger.info(f"Content indexed successfully to {self.index_path}")
+            # Add the updated document
+            updated_doc = {
+                'id': doc_id,
+                'content': content,
+                'metadata': metadata
+            }
+            self.qdrant_store.add_documents([updated_doc])
+
+            logger.info(f"Updated document {doc_id}")
             return True
-
         except Exception as e:
-            logger.error(f"Error during content indexing: {str(e)}")
+            logger.error(f"Error updating document {doc_id}: {str(e)}")
             return False
 
-    def incremental_index(self, new_or_updated_files: List[str]) -> bool:
-        """
-        Perform incremental indexing for new or updated files
-
-        Args:
-            new_or_updated_files: List of file paths that are new or updated
-
-        Returns:
-            bool: True if incremental indexing was successful, False otherwise
-        """
+    def delete_document(self, doc_id: str) -> bool:
+        """Delete a document from the vector store"""
         try:
-            logger.info(f"Starting incremental indexing for {len(new_or_updated_files)} files")
-
-            # Load the existing vector store
-            vector_store = TextbookVectorStore()
-            try:
-                vector_store.load(self.index_path, self.metadata_path)
-                logger.info("Loaded existing vector store for incremental update")
-            except FileNotFoundError:
-                logger.info("No existing vector store found, creating new one")
-                return self.index_content()
-
-            # Load documents for the specific files
-            documents = []
-            loader = TextbookDocumentLoader(docs_path=self.docs_path)
-
-            for file_path in new_or_updated_files:
-                try:
-                    doc = loader._load_single_document(file_path)
-                    if doc:
-                        documents.append(doc)
-                except Exception as e:
-                    logger.error(f"Error loading document {file_path}: {str(e)}")
-                    continue
-
-            if not documents:
-                logger.warning("No documents to add for incremental indexing")
-                return True
-
-            # Add new documents to the vector store
-            vector_store.add_documents(documents)
-
-            # Save the updated vector store
-            vector_store.save(self.index_path, self.metadata_path)
-
-            logger.info(f"Incremental indexing completed, {len(documents)} documents added")
+            self.qdrant_store.client.delete(
+                collection_name=self.qdrant_store.collection_name,
+                points_selector=[doc_id]
+            )
+            logger.info(f"Deleted document {doc_id}")
             return True
-
         except Exception as e:
-            logger.error(f"Error during incremental indexing: {str(e)}")
+            logger.error(f"Error deleting document {doc_id}: {str(e)}")
             return False
 
-    def update_index(self) -> bool:
-        """
-        Update the index by reloading all content from docs
+    def reindex_all(self, docs_path: Optional[str] = None) -> Dict[str, Any]:
+        """Delete existing collection and reindex all documents"""
+        start_time = time.time()
+        docs_path = Path(docs_path or self.docs_path)
 
-        Returns:
-            bool: True if update was successful, False otherwise
-        """
-        logger.info("Starting full index update")
-        return self.index_content()
+        logger.info("Starting full reindexing...")
 
-    def delete_from_index(self, file_paths: List[str]) -> bool:
-        """
-        Remove documents from the index based on file paths
-
-        Args:
-            file_paths: List of file paths to remove from the index
-
-        Returns:
-            bool: True if deletion was successful, False otherwise
-        """
         try:
-            logger.info(f"Starting deletion of {len(file_paths)} documents from index")
+            # Delete the existing collection
+            self.qdrant_store.delete_collection()
+            logger.info("Deleted existing collection")
 
-            # Load the existing vector store
-            vector_store = TextbookVectorStore()
-            vector_store.load(self.index_path, self.metadata_path)
+            # Create a new store instance (collection will be recreated automatically)
+            self.qdrant_store = QdrantTextbookStore()
 
-            # In a real implementation, we would need a way to identify and remove specific documents
-            # Since FAISS doesn't directly support deletion by ID, we would need to rebuild the index
-            # without the specified documents. For this implementation, we'll trigger a full re-index
-            # of the remaining documents.
+            # Index documents
+            result = self.index_documents(docs_path=str(docs_path))
+            result["processing_time"] = time.time() - start_time
 
-            logger.info("Rebuilding index without specified documents")
-            return self.index_content()
+            logger.info("Full reindexing completed")
+            return result
 
         except Exception as e:
-            logger.error(f"Error during index deletion: {str(e)}")
-            return False
+            logger.error(f"Error during full reindexing: {str(e)}")
+            return {
+                "indexed_count": 0,
+                "total_documents": 0,
+                "processing_time": time.time() - start_time,
+                "success": False,
+                "message": f"Error during reindexing: {str(e)}"
+            }
+
+    def get_index_stats(self) -> Dict[str, Any]:
+        """Get statistics about the current index"""
+        try:
+            count = self.qdrant_store.get_document_count()
+            collection_info = self.qdrant_store.client.get_collection(
+                self.qdrant_store.collection_name
+            )
+
+            return {
+                "document_count": count,
+                "vectors_count": collection_info.vectors_count,
+                "indexed": True,
+                "collection_name": self.qdrant_store.collection_name
+            }
+        except Exception as e:
+            logger.error(f"Error getting index stats: {str(e)}")
+            return {
+                "document_count": 0,
+                "vectors_count": 0,
+                "indexed": False,
+                "collection_name": self.qdrant_store.collection_name,
+                "error": str(e)
+            }
 
 
-def create_textbook_indexer(docs_path: str = None,
-                           index_path: str = None,
-                           metadata_path: str = None) -> TextbookIndexer:
-    """
-    Create a textbook indexer instance
-
-    Args:
-        docs_path: Path to Docusaurus docs directory
-        index_path: Path to save the vector index
-        metadata_path: Path to save the metadata
-
-    Returns:
-        TextbookIndexer instance
-    """
-    return TextbookIndexer(
-        docs_path=docs_path or rag_config.docs_path,
-        index_path=index_path or rag_config.index_path,
-        metadata_path=metadata_path or rag_config.metadata_path
-    )
-
-
-def index_textbook_content(docs_path: str = None,
-                          index_path: str = None,
-                          metadata_path: str = None) -> bool:
-    """
-    Convenience function to index all textbook content
-
-    Args:
-        docs_path: Path to Docusaurus docs directory
-        index_path: Path to save the vector index
-        metadata_path: Path to save the metadata
-
-    Returns:
-        bool: True if indexing was successful, False otherwise
-    """
-    indexer = create_textbook_indexer(docs_path, index_path, metadata_path)
-    return indexer.index_content()
+def create_indexer(qdrant_store: QdrantTextbookStore = None, docs_path: str = None) -> TextbookIndexer:
+    """Create a textbook indexer instance"""
+    return TextbookIndexer(qdrant_store=qdrant_store, docs_path=docs_path)
 
 
 if __name__ == "__main__":
     # Example usage
-    print("Starting textbook content indexing...")
+    print("Creating textbook indexer...")
 
-    # Create indexer and index content
-    success = index_textbook_content()
-
-    if success:
-        print("Textbook content indexed successfully!")
-    else:
-        print("Failed to index textbook content.")
-        exit(1)
-
-    # Test the indexer with specific paths
+    # Create indexer
     indexer = TextbookIndexer()
-    print(f"Indexing content from: {indexer.docs_path}")
-    print(f"Index will be saved to: {indexer.index_path}")
-    print(f"Metadata will be saved to: {indexer.metadata_path}")
+
+    # Get initial stats
+    stats = indexer.get_index_stats()
+    print(f"Initial index stats: {stats}")
+
+    # Index documents
+    result = indexer.index_documents()
+    print(f"Indexing result: {result}")
+
+    # Get final stats
+    final_stats = indexer.get_index_stats()
+    print(f"Final index stats: {final_stats}")

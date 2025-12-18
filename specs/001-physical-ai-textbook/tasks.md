@@ -48,6 +48,10 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook implementat
 - [X] T010 [P] Set up basic API server with FastAPI in backend/
 - [X] T011 [P] Create basic configuration files (environment variables, settings)
 - [X] T012 [P] Set up basic testing frameworks (Jest for frontend, pytest for backend)
+- [ ] T076 [P] Internationalization setup for future Urdu translation in my-website/docusaurus.config.ts
+- [ ] T082 [P] Add language switcher component to Docusaurus theme in my-website/src/theme/
+- [ ] T097 [P] Set up performance monitoring baseline in my-website/docusaurus.config.ts
+- [ ] T098 [P] Add accessibility testing configuration in package.json
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -86,6 +90,8 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook implementat
 - [X] T033 [US1] Add ROS 2, Gazebo, NVIDIA Isaac, and VLA framework explanations to relevant chapters
 - [X] T034 [US1] Add difficulty levels and estimated completion times to chapters
 - [X] T035 [US1] Add related chapters cross-references to improve navigation
+- [ ] T083 [P] Update content to support i18n keys in my-website/docs/
+- [ ] T081 [P] Create Urdu translation files structure in my-website/i18n/ur/
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -113,6 +119,9 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook implementat
 - [X] T045 [US2] Create sitemap configuration for SEO in docusaurus.config.ts
 - [X] T046 [US2] Add PWA capabilities for offline reading in docusaurus.config.ts
 - [X] T047 [US2] Test deployment workflow in staging environment
+- [ ] T072 Performance optimization for page load times under 2 seconds
+- [ ] T075 Accessibility improvements for textbook content (WCAG 2.1 AA compliance)
+- [ ] T074 Security hardening for deployed content
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -158,6 +167,13 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook implementat
 - [X] T090 [P] [US3] Create Gazebo simulation integration for textbook examples in backend/integration/gazebo_integration.py
 - [X] T091 [P] [US3] Create NVIDIA Isaac integration for textbook examples in backend/integration/isaac_integration.py
 - [X] T092 [P] [US3] Create VLA (Vision-Language-Action) system integration for textbook examples in backend/integration/vla_integration.py
+- [ ] T079 [P] Performance testing for RAG response times under 3 seconds in tests/performance/rag-performance.test.js
+- [ ] T084 [P] Performance testing for page load times in tests/performance/page-load.test.js
+- [ ] T085 [P] Load testing for 1000+ concurrent users in tests/performance/load-test.test.js
+- [ ] T074 Security hardening for API endpoints
+- [ ] T086 [P] Add RAG chatbot error handling for edge cases in backend/rag/chatbot.py
+- [ ] T087 [P] Add input validation for chatbot queries in backend/api/endpoints/chat.py
+- [ ] T088 [P] Add fallback responses for low-confidence RAG answers in backend/rag/response_validator.py
 
 **Checkpoint**: At this point, User Stories 1, 2 AND 3 should all work independently
 
@@ -168,23 +184,10 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook implementat
 
 - [ ] T070 [P] Add comprehensive documentation in docs/
 - [ ] T071 Code cleanup and refactoring across all components
-- [ ] T072 Performance optimization for page load times
 - [ ] T073 [P] Additional unit tests (if requested) in tests/unit/
-- [ ] T074 Security hardening for API endpoints
-- [ ] T075 Accessibility improvements for textbook content
-- [ ] T076 [P] Internationalization setup for future Urdu translation in my-website/docusaurus.config.ts
-- [ ] T081 [P] Create Urdu translation files structure in my-website/i18n/ur/
-- [ ] T082 [P] Add language switcher component to Docusaurus theme in my-website/src/theme/
-- [ ] T083 [P] Update content to support i18n keys in my-website/docs/
 - [ ] T077 Run quickstart.md validation to ensure all steps work
 - [ ] T078 Add error handling and logging throughout the application
-- [ ] T079 [P] Performance testing for RAG response times in tests/performance/rag-performance.test.js
-- [ ] T084 [P] Performance testing for page load times in tests/performance/page-load.test.js
-- [ ] T085 [P] Load testing for 1000+ concurrent users in tests/performance/load-test.test.js
 - [ ] T080 [P] User acceptance testing with sample questions
-- [ ] T086 [P] Add RAG chatbot error handling for edge cases in backend/rag/chatbot.py
-- [ ] T087 [P] Add input validation for chatbot queries in backend/api/endpoints/chat.py
-- [ ] T088 [P] Add fallback responses for low-confidence RAG answers in backend/rag/response_validator.py
 
 ---
 ## Dependencies & Execution Order

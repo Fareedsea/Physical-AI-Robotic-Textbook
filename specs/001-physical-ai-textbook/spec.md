@@ -83,6 +83,6 @@ Students should be able to ask questions about the textbook content and receive 
 
 - **SC-001**: Students can successfully simulate and control a humanoid robot after completing the textbook modules
 - **SC-002**: The book fully deploys on GitHub Pages and remains accessible 99% of the time
-- **SC-003**: The integrated RAG chatbot answers 85% of textbook-related questions accurately
+- **SC-003**: The integrated RAG chatbot answers 85% of textbook-related questions accurately, where accuracy is measured by: (1) response relevance to the textbook content (70% weight), (2) factual correctness compared to textbook information (20% weight), and (3) confidence score >0.7 for provided answers (10% weight)
 - **SC-004**: Students can navigate from basic robotics concepts to advanced VLA applications within 12 weeks of study
-- **SC-005**: Each chapter includes learning goals and applied outcomes that 80% of students can achieve
+- **SC-005**: Each chapter includes learning goals and applied outcomes that 80% of students can achieve, where achievement is measured by successful completion of practical exercises and passing chapter-end assessments with 70% or higher accuracy

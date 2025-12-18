@@ -1,0 +1,536 @@
+/**
+ * Modernized CSS for Physical AI & Humanoid Robotics Textbook
+ * Updated design with improved typography, colors, and layout
+ */
+
+/* Modern color palette with better accessibility */
+:root {
+  /* Primary colors - modern blue-based palette */
+  --ifm-color-primary: #1a73e8;
+  --ifm-color-primary-dark: #1865cc;
+  --ifm-color-primary-darker: #1658b0;
+  --ifm-color-primary-darkest: #124894;
+  --ifm-color-primary-light: #3b8cff;
+  --ifm-color-primary-lighter: #5d9fff;
+  --ifm-color-primary-lightest: #80b3ff;
+
+  /* Secondary colors - modern accent colors */
+  --ifm-color-secondary: #fbbc04;
+  --ifm-color-secondary-dark: #e0a704;
+  --ifm-color-secondary-darker: #c49303;
+  --ifm-color-secondary-darkest: #a87f03;
+  --ifm-color-secondary-light: #fcd14e;
+  --ifm-color-secondary-lighter: #fdd662;
+  --ifm-color-secondary-lightest: #feeaa6;
+
+  /* Success and warning colors */
+  --ifm-color-success: #34a853;
+  --ifm-color-warning: #f9ab00;
+  --ifm-color-danger: #ea4335;
+
+  /* Improved text colors */
+  --ifm-color-emphasis-300: #d2e3fc;
+  --ifm-color-emphasis-400: #a0c3f0;
+  --ifm-color-emphasis-500: #6ea6e4;
+  --ifm-color-emphasis-600: #3b8cff;
+  --ifm-color-emphasis-700: #1a73e8;
+  --ifm-color-emphasis-800: #1658b0;
+  --ifm-color-emphasis-900: #124894;
+
+  /* Modern code font size */
+  --ifm-code-font-size: 90%;
+
+  /* Highlighted code line background */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.07);
+
+  /* Custom textbook variables */
+  --textbook-primary: #1a73e8;
+  --textbook-secondary: #fbbc04;
+  --textbook-accent: #34a853;
+  --textbook-dark: #202124;
+  --textbook-light: #ffffff;
+  --textbook-gray: #5f6368;
+  --textbook-light-gray: #f8f9fa;
+  --textbook-border: #dadce0;
+
+  /* Modern spacing scale */
+  --ifm-spacing-scale: 1.25;
+  --ifm-spacing-xs: calc(0.5rem * var(--ifm-spacing-scale));
+  --ifm-spacing-sm: calc(0.75rem * var(--ifm-spacing-scale));
+  --ifm-spacing-md: calc(1rem * var(--ifm-spacing-scale));
+  --ifm-spacing-lg: calc(1.5rem * var(--ifm-spacing-scale));
+  --ifm-spacing-xl: calc(2rem * var(--ifm-spacing-scale));
+  --ifm-spacing-2xl: calc(3rem * var(--ifm-spacing-scale));
+  --ifm-spacing-3xl: calc(4rem * var(--ifm-spacing-scale));
+
+  /* Modern shadows */
+  --ifm-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --ifm-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --ifm-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode improvements */
+[data-theme='dark'] {
+  /* Primary colors for dark mode */
+  --ifm-color-primary: #8ab4f8;
+  --ifm-color-primary-dark: #6a9df2;
+  --ifm-color-primary-darker: #4a86ec;
+  --ifm-color-primary-darkest: #2a6fe6;
+  --ifm-color-primary-light: #aacedc;
+  --ifm-color-primary-lighter: #c0e0f0;
+  --ifm-color-primary-lightest: #d4eef4;
+
+  /* Secondary colors for dark mode */
+  --ifm-color-secondary: #fdd662;
+  --ifm-color-secondary-dark: #e0b84a;
+  --ifm-color-secondary-darker: #c49c32;
+  --ifm-color-secondary-darkest: #a8801a;
+  --ifm-color-secondary-light: #fde086;
+  --ifm-color-secondary-lighter: #fdf2c4;
+  --ifm-color-secondary-lightest: #fef8e0;
+
+  /* Improved dark mode text colors */
+  --ifm-color-emphasis-300: #4a4d52;
+  --ifm-color-emphasis-400: #3c4043;
+  --ifm-color-emphasis-500: #202124;
+  --ifm-color-emphasis-600: #171717;
+  --ifm-color-emphasis-700: #0d0e0f;
+  --ifm-color-emphasis-800: #030303;
+  --ifm-color-emphasis-900: #000000;
+
+  /* Dark mode specific variables */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+  --textbook-primary: #8ab4f8;
+  --textbook-secondary: #fdd662;
+  --textbook-accent: #67c286;
+  --textbook-dark: #ffffff;
+  --textbook-light: #202124;
+  --textbook-gray: #9aa0a6;
+  --textbook-light-gray: #2d3035;
+  --textbook-border: #5f6368;
+}
+
+/* Modern typography improvements */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.625;
+  letter-spacing: -0.005em;
+}
+
+/* Heading improvements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.8em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Paragraph improvements */
+p {
+  margin-bottom: 1.25rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Modern code block styling */
+.code-block {
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+/* Modern blockquote styling */
+blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  background-color: var(--ifm-color-emphasis-100);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Modern table styling */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--ifm-shadow-md);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+}
+
+th {
+  background-color: var(--ifm-color-emphasis-200);
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+/* Modern button styling */
+.button {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--ifm-shadow-md);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--ifm-shadow-lg);
+}
+
+/* Modern card styling */
+.card {
+  border-radius: 12px;
+  box-shadow: var(--ifm-shadow-md);
+  border: none;
+  overflow: hidden;
+}
+
+.card__header, .card__body, .card__footer {
+  padding: 1.5rem;
+}
+
+/* Improved content container */
+.textbook-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.textbook-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--ifm-shadow-md);
+}
+
+/* Enhanced learning objective blocks */
+.learning-objectives {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left: 4px solid var(--ifm-color-primary);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--textbook-border);
+}
+
+.learning-outcomes {
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-light));
+  color: white;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: var(--ifm-shadow-md);
+}
+
+.practical-exercise {
+  border: 2px solid var(--ifm-color-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background-color: var(--ifm-color-emphasis-50);
+  box-shadow: var(--ifm-shadow-md);
+}
+
+/* Modern sidebar improvements */
+.menu {
+  font-size: 0.9rem;
+}
+
+.menu__link {
+  border-radius: 6px;
+  margin: 2px 0;
+  padding: 0.5rem 1rem;
+}
+
+.menu__link--active {
+  background-color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary);
+}
+
+/* Modern navbar improvements */
+.navbar {
+  box-shadow: var(--ifm-shadow-md);
+  padding: 0.75rem 1rem;
+}
+
+.navbar__title {
+  font-weight: 600;
+}
+
+.navbar__item, .navbar__link {
+  font-weight: 500;
+}
+
+/* Modern footer improvements */
+.footer {
+  background-color: var(--ifm-color-emphasis-900);
+  color: var(--ifm-color-emphasis-100);
+  padding: 3rem 1rem 2rem;
+}
+
+/* Improved accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Focus indicators for keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Modern search improvements */
+.navbar__search-input {
+  border-radius: 6px;
+  border: 1px solid var(--textbook-border);
+  padding: 0.5rem 1rem;
+}
+
+.navbar__search-input:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: -2px;
+}
+
+/* Modern alert styling */
+.alert {
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  border-left-width: 4px;
+}
+
+.alert--primary {
+  border-left-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--secondary {
+  border-left-color: var(--ifm-color-secondary);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--success {
+  border-left-color: var(--ifm-color-success);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--warning {
+  border-left-color: var(--ifm-color-warning);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--danger {
+  border-left-color: var(--ifm-color-danger);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+/* Modern code snippet improvements */
+.prism-code {
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+
+/* Improved list styling */
+ul, ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Modern callout boxes */
+.callout {
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout--note {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left-color: var(--ifm-color-primary);
+}
+
+.callout--tip {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left-color: var(--ifm-color-success);
+}
+
+.callout--caution {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left-color: var(--ifm-color-warning);
+}
+
+.callout--danger {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left-color: var(--ifm-color-danger);
+}
+
+/* Modern link styling */
+a {
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-darker);
+}
+
+/* Responsive design improvements */
+@media (max-width: 996px) {
+  .main-wrapper {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1.375rem;
+    line-height: 1.3;
+  }
+
+  .textbook-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .textbook-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .card__header, .card__body, .card__footer {
+    padding: 1rem;
+  }
+
+  /* Adjust buttons for touch targets */
+  .button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 16px;
+  }
+
+  /* Improve navigation on mobile */
+  .navbar__items {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-wrapper {
+    padding: 0.25rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .textbook-content {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* Make links easier to tap */
+  a {
+    padding: 6px 0;
+  }
+
+  .button {
+    padding: 12px 20px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .menu,
+  .pagination-nav,
+  .footer {
+    display: none;
+  }
+
+  .main-wrapper {
+    padding: 0;
+  }
+
+  .textbook-content {
+    padding: 0;
+    max-width: 100%;
+  }
+}

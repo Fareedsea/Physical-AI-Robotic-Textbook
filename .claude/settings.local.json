@@ -17,7 +17,32 @@
       "Bash(npx jest --testPathPattern=\"../tests/integration/\" --passWithNoTests)",
       "Bash(npx jest --testPathPatterns=\"../tests/integration/\" --passWithNoTests)",
       "Bash(node -e \"\nconst { execSync } = require(''child_process'');\ntry {\n  execSync(''cd my-website && npm run build'', { stdio: ''pipe'' });\n  console.log(''✓ Docusaurus build completed successfully'');\n} catch (error) {\n  console.log(''✗ Docusaurus build failed:'', error.message);\n}\n\")",
-      "Bash(npm run build --if-present)"
+      "Bash(npm run build --if-present)",
+      "Bash(python test_chatbot.py)",
+      "Bash(pip install langchain openai qdrant-client fastapi uvicorn python-dotenv pydantic pydantic-settings requests numpy pandas tiktoken psycopg2-binary sqlalchemy beautifulsoup4 PyYAML sentence-transformers python-multipart transformers torch)",
+      "Bash(pip install qdrant-client)",
+      "Bash(pip install sentence-transformers)",
+      "Bash(python simple_validation.py)",
+      "Bash(pip install sentence-transformers --no-cache-dir)",
+      "Bash(python backend/simple_validation.py)",
+      "Bash(python -m backend.scripts.index_documents)",
+      "Bash(python -m backend.main)",
+      "Bash(python main.py)",
+      "Bash(uvicorn main:app --reload --port 8000)",
+      "Bash(curl http://127.0.0.1:8000/health)",
+      "Bash(curl http://127.0.0.1:8000/)",
+      "Bash(curl http://127.0.0.1:8000/docs)",
+      "Bash(curl -X GET \"http://127.0.0.1:8000/content/search?query=test\" -H \"Content-Type: application/json\")",
+      "Bash(curl -X POST \"http://127.0.0.1:8000/chat/query\" -H \"Content-Type: application/json\" -d \"{\"\"query\"\": \"\"What is Physical AI?\"\"}\")",
+      "Bash(python backend/test_chatbot.py)",
+      "Bash(tasklist)",
+      "Bash(findstr python)",
+      "Bash(/tasks)",
+      "WebSearch",
+      "Bash(npm install)",
+      "Bash(npm run start)",
+      "Bash(curl http://localhost:3000/)",
+      "Bash(npx serve build)"
     ]
   }
 }
