@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://fareed-ai.github.io', // Replace with actual GitHub Pages URL
+  // url: 'https://fareedsea.github.io', // Replace with actual GitHub Pages URL
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   // baseURL   baseUrl: '/Physical-AI-Robotic-Textbook/',
@@ -23,7 +23,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'fareed-ai', // Usually your GitHub org/user name.
+  organizationName: 'fareedsea', // Usually your GitHub org/user name.
   projectName: 'Physical-AI-Robotic-Textbook', // Usually your repo name.
   deploymentBranch: 'gh-pages', // The branch to deploy to GitHub Pages
   trailingSlash: false, // Set to false to remove trailing slashes
