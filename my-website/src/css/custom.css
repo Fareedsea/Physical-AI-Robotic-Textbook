@@ -22,6 +22,25 @@
   --textbook-accent: #34a853;
   --textbook-dark: #202124;
   --textbook-light: #ffffff;
+
+  /* Dark theme color system - Primary background */
+  --theme-bg-primary: #1a1a1a; /* deep charcoal */
+  --theme-bg-secondary: #2a2a2a; /* dark slate */
+
+  /* Dark theme color system - Accent colors */
+  --theme-accent-primary: #00b4d8; /* electric blue */
+  --theme-accent-secondary: #00f5d4; /* cyan */
+  --theme-accent-tertiary: #7209b7; /* violet */
+
+  /* Dark theme color system - Text colors */
+  --theme-text-primary: #e6e6e6; /* light gray */
+  --theme-text-secondary: #c2c2c2;
+  --theme-text-muted: #a0a0a0; /* for less important text */
+  --theme-text-link: #4cc9f0; /* link color */
+
+  /* Dark theme color system - Border colors */
+  --theme-border: #404040;
+  --theme-border-light: #333333;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -41,6 +60,25 @@
   --textbook-accent: #67c286;
   --textbook-dark: #ffffff;
   --textbook-light: #202124;
+
+  /* Dark theme color system - Primary background */
+  --theme-bg-primary: #1a1a1a; /* deep charcoal */
+  --theme-bg-secondary: #2a2a2a; /* dark slate */
+
+  /* Dark theme color system - Accent colors */
+  --theme-accent-primary: #00b4d8; /* electric blue */
+  --theme-accent-secondary: #00f5d4; /* cyan */
+  --theme-accent-tertiary: #7209b7; /* violet */
+
+  /* Dark theme color system - Text colors */
+  --theme-text-primary: #e6e6e6; /* light gray */
+  --theme-text-secondary: #c2c2c2;
+  --theme-text-muted: #a0a0a0; /* for less important text */
+  --theme-text-link: #4cc9f0; /* link color */
+
+  /* Dark theme color system - Border colors */
+  --theme-border: #404040;
+  --theme-border-light: #333333;
 }
 
 /* Responsive design improvements */
@@ -181,4 +219,478 @@ select:focus,
 textarea:focus {
   outline: 2px solid var(--textbook-primary);
   outline-offset: 2px;
+}
+
+/* Apply dark theme colors to main elements */
+body {
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+}
+
+.main-wrapper {
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+}
+
+/* Apply dark theme to navigation elements */
+.navbar {
+  background-color: var(--theme-bg-secondary) !important;
+  color: var(--theme-text-primary);
+}
+
+.navbar__brand,
+.navbar__item,
+.navbar__link {
+  color: var(--theme-text-primary) !important;
+}
+
+.navbar__link:hover {
+  color: var(--theme-accent-primary) !important;
+}
+
+/* Apply dark theme to sidebar */
+.sidebar {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-text-primary);
+}
+
+.menu__link {
+  color: var(--theme-text-secondary) !important;
+}
+
+.menu__link:hover,
+.menu__link--active {
+  color: var(--theme-accent-primary) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Apply dark theme to footer */
+.footer {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-text-primary);
+}
+
+.footer__link {
+  color: var(--theme-text-secondary) !important;
+}
+
+.footer__link:hover {
+  color: var(--theme-accent-primary) !important;
+}
+
+/* Apply dark theme to content areas */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: var(--theme-text-primary);
+}
+
+.markdown a {
+  color: var(--theme-text-link) !important;
+}
+
+.markdown a:hover {
+  color: var(--theme-accent-primary) !important;
+}
+
+/* Code block theme for dark mode */
+.prism-code {
+  background-color: var(--theme-bg-secondary) !important;
+  color: var(--theme-text-primary) !important;
+}
+
+/* Blockquote styling for dark theme */
+blockquote {
+  background-color: var(--theme-bg-secondary);
+  border-left: 4px solid var(--theme-accent-primary);
+  color: var(--theme-text-secondary);
+}
+
+/* Typography improvements for better readability */
+.markdown p {
+  line-height: 1.7 !important; /* Increase from default for better readability */
+  margin-bottom: 1.2rem;
+  color: var(--theme-text-primary);
+}
+
+/* Heading hierarchy improvements */
+.markdown h1 {
+  line-height: 1.2;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: var(--theme-text-primary);
+}
+
+.markdown h2 {
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: var(--theme-text-primary);
+}
+
+.markdown h3 {
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: var(--theme-text-primary);
+}
+
+.markdown h4 {
+  line-height: 1.35;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--theme-text-primary);
+}
+
+/* List improvements */
+.markdown ul,
+.markdown ol {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--theme-text-primary);
+}
+
+.markdown li {
+  margin-bottom: 0.25rem;
+  color: var(--theme-text-primary);
+}
+
+/* Table improvements */
+.markdown table {
+  margin-bottom: 1.5rem;
+}
+
+.markdown th,
+.markdown td {
+  padding: 0.75rem;
+  border: 1px solid var(--theme-border);
+}
+
+.markdown th {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-text-primary);
+}
+
+.markdown td {
+  color: var(--theme-text-secondary);
+}
+
+/* Enhanced code block appearance with dark-friendly syntax highlighting */
+.prism-code {
+  border-radius: 6px;
+  padding: 1rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  overflow-x: auto;
+}
+
+/* Inline code styling */
+code {
+  background-color: var(--theme-bg-secondary) !important;
+  color: var(--theme-accent-secondary) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* Improved markdown rendering for better readability */
+.markdown {
+  color: var(--theme-text-primary);
+}
+
+.markdown a {
+  text-decoration: underline;
+}
+
+.markdown strong {
+  color: var(--theme-text-primary);
+}
+
+.markdown em {
+  color: var(--theme-text-secondary);
+}
+
+/* Navbar styling improvements */
+.navbar {
+  padding: 0.75rem 1rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar__items {
+  gap: 0.5rem;
+}
+
+.navbar__item {
+  transition: color 0.2s ease;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+.navbar__item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--theme-accent-primary) !important;
+}
+
+.navbar__link {
+  transition: color 0.2s ease !important;
+}
+
+/* Sidebar improvements */
+.menu {
+  padding: 1rem 0 !important;
+}
+
+.menu__list {
+  padding: 0 0.5rem;
+}
+
+.menu__list-item {
+  margin: 0.25rem 0;
+}
+
+.menu__list-item-collapsible {
+  margin: 0.25rem 0;
+}
+
+.menu__link {
+  border-radius: 4px !important;
+  margin: 0.15rem 0;
+  transition: all 0.2s ease !important;
+}
+
+.menu__link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--theme-accent-primary) !important;
+}
+
+.menu__link--active {
+  background-color: rgba(0, 180, 216, 0.15) !important;
+  color: var(--theme-accent-primary) !important;
+  border-left: 3px solid var(--theme-accent-primary) !important;
+}
+
+/* Sidebar scroll styling */
+.sidebar {
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--theme-bg-secondary);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent-primary);
+}
+
+/* Footer styling for dark theme consistency */
+.footer {
+  padding: 2rem 0 1rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid var(--theme-border);
+}
+
+/* Improve spacing between content sections */
+.doc-content {
+  padding: 0 1rem;
+}
+
+/* Add smooth transitions for hover and focus states */
+.navbar__item,
+.menu__link,
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Improve content area spacing */
+.container {
+  padding: 0 1rem;
+}
+
+/* Card-like elements styling */
+.card {
+  background-color: var(--theme-bg-secondary) !important;
+  border: 1px solid var(--theme-border) !important;
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Responsive design improvements for mobile */
+@media (max-width: 768px) {
+  /* Adjust navbar for mobile */
+  .navbar {
+    padding: 0.5rem !important;
+  }
+
+  .navbar__items {
+    gap: 0.25rem;
+  }
+
+  .navbar__item {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Improve sidebar toggle behavior on mobile */
+  .sidebar {
+    width: 100% !important;
+    position: relative !important;
+    min-height: auto !important;
+  }
+
+  .sidebar .menu {
+    padding: 0.5rem 0 !important;
+  }
+
+  .menu__link {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust main content for mobile */
+  .main-wrapper {
+    flex-direction: column !important;
+  }
+
+  /* Make headings more readable on small screens */
+  .markdown h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .markdown h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .markdown h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Adjust code blocks for mobile */
+  .prism-code {
+    font-size: 0.8rem !important;
+    padding: 0.75rem !important;
+  }
+
+  code {
+    font-size: 0.8rem !important;
+  }
+
+  /* Improve table display on mobile */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 100% !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Adjust buttons for touch targets */
+  button,
+  .button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 10px 16px !important;
+  }
+
+  /* Ensure readable font sizes on mobile */
+  .markdown p {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Adjust navigation links for touch */
+  .navbar__link,
+  .menu__link {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .navbar {
+    padding: 0.25rem !important;
+  }
+
+  .navbar__item {
+    padding: 0.25rem;
+  }
+
+  .menu__link {
+    padding: 0.75rem 0.75rem !important;
+    font-size: 0.85rem;
+  }
+
+  /* Make links easier to tap */
+  a {
+    padding: 8px 0 !important;
+  }
+
+  /* Further adjust headings for very small screens */
+  .markdown h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .markdown h2 {
+    font-size: 1.25rem !important;
+  }
+
+  /* Ensure readable text size */
+  .markdown p {
+    font-size: 0.9rem !important;
+  }
+
+  /* Adjust content padding */
+  .container {
+    padding: 0 0.5rem !important;
+  }
+
+  .doc-content {
+    padding: 0 0.5rem !important;
+  }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 280px !important;
+  }
+
+  .content {
+    padding: 0 1.5rem !important;
+  }
+
+  /* Adjust font sizes for tablets */
+  .markdown h1 {
+    font-size: 2.2rem !important;
+  }
+
+  .markdown h2 {
+    font-size: 1.75rem !important;
+  }
 }
